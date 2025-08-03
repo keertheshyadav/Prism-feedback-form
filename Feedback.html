@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback | Prism Hospitality Services W</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin:0; padding:0; height:100%; width:100%;
+            font-family: Arial, sans-serif; background: #fcfcfc;
+        }
+        .splash {
+            position:fixed; top:0; left:0; width:100vw; height:100vh;
+            background:#000; display:flex; align-items:center;
+            justify-content:center; z-index:100;
+        }
+        .splash-text {
+            color:#12a964; font-size:2.2em; text-align:center;
+        }
+        .container {
+            max-width:400px; margin:auto; padding:2em; background:#fff;
+            border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06);
+            display:none;
+        }
+        h2 { color:#333;}
+        label { margin-top:12px; display:block; font-weight:bold;}
+        .stars {
+            font-size:1.4em; margin:8px 0;
+        }
+        .feedback-form textarea, .feedback-form input, .feedback-form select {
+            width:100%; margin-top:5px; padding:8px; border:1px solid #ddd; border-radius:4px;
+        }
+        .feedback-form button {
+            margin-top:15px; padding:10px 20px; background:#12a964;
+            color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:1em;
+        }
+        .contact-info { margin:1em 0 0.5em 0; color:#222;}
+        .contact-note { font-size:0.96em; color:#444; margin-bottom:10px;}
+    </style>
+    <script>
+        window.onload = function() {
+            setTimeout(function(){
+                document.querySelector('.splash').style.display = 'none';
+                document.querySelector('.container').style.display = 'block';
+            }, 2000);
+        }
+        function setRating(r) {
+            document.getElementById('rating').value = r;
+            // Set visual stars
+            let stars = "";
+            for(let i=1; i<=5; i++){
+                stars += i<=r ? "⭐" : "☆";
+            }
+            document.getElementById('starDisplay').innerHTML = stars + " " + ["😡","😞","😐","🙂","😍"][r-1];
+        }
+    </script>
+</head>
+<body>
+    <div class="splash">
+        <span class="splash-text">Prism Hospitality Services</span>
+    </div>
+    <div class="container">
+        <h2>WE VALUE FEEDBACK AS MUCH AS YOU</h2>
+        <form class="feedback-form">
+            <label>Rate your experience:</label>
+            <input type="hidden" id="rating" name="rating" value="5">
+            <div class="stars" onclick="setRating(event.target.dataset.val)">
+                <span style="cursor:pointer;" onclick="setRating(1)" data-val="1">⭐</span>
+                <span style="cursor:pointer;" onclick="setRating(2)" data-val="2">⭐</span>
+                <span style="cursor:pointer;" onclick="setRating(3)" data-val="3">⭐</span>
+                <span style="cursor:pointer;" onclick="setRating(4)" data-val="4">⭐</span>
+                <span style="cursor:pointer;" onclick="setRating(5)" data-val="5">⭐</span>
+                <span id="starDisplay" style="margin-left:10px;">⭐⭐⭐⭐⭐ 😍</span>
+            </div>
+
+            <label for="items">What items did you order?</label>
+            <textarea id="items" name="items" rows="2" placeholder="List what you ordered"></textarea>
+
+            <label for="comments">How was the quality and taste of the food? Was it good or bad?</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Share your comments on quality/taste"></textarea>
+            
+            <div class="contact-info">
+                📧 prismhospitality@invesco.in
+            </div>
+            <div class="contact-note">
+                Drop us a mail or<br>
+                Share your mail ID or name if you'd like us to contact you:
+            </div>
+            <input type="text" name="user_contact" placeholder="Your mail ID or name (optional)">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        // Initialize display stars at 5
+        setRating(5);
+    </script>
+</body>
+</html>
