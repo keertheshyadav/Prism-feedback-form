@@ -46,7 +46,6 @@
         }
         function setRating(r) {
             document.getElementById('rating').value = r;
-            // Set visual stars
             let stars = "";
             for(let i=1; i<=5; i++){
                 stars += i<=r ? "⭐" : "☆";
@@ -61,7 +60,10 @@
     </div>
     <div class="container">
         <h2>WE VALUE FEEDBACK AS MUCH AS YOU</h2>
-        <form class="feedback-form">
+
+        <form name="feedback" method="POST" data-netlify="true" class="feedback-form">
+            <input type="hidden" name="form-name" value="feedback" />
+
             <label>Rate your experience:</label>
             <input type="hidden" id="rating" name="rating" value="5">
             <div class="stars" onclick="setRating(event.target.dataset.val)">
@@ -78,7 +80,7 @@
 
             <label for="comments">How was the quality and taste of the food? Was it good or bad?</label>
             <textarea id="comments" name="comments" rows="4" placeholder="Share your comments on quality/taste"></textarea>
-            
+
             <div class="contact-info">
                 📧 prismhospitality@invesco.in
             </div>
@@ -91,8 +93,8 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+
     <script>
-        // Initialize display stars at 5
         setRating(5);
     </script>
 </body>
